@@ -15,7 +15,7 @@ var element_has_style = temp_element.includes("style=");
 
 
 if (element_has_class) {
-    selector='class="' + element.getAttribute("class") + '"';
+    selector='class=' + element.getAttribute("class");
 console.log(selector);
     locatorsList.class={type:"class",locator : selector,occurance:1,suggestion:"true green"}
     selector ='//' + elementType + '[@class="' + element.getAttribute("class") + '"]';
@@ -31,9 +31,13 @@ selector ='//' + elementType + '[@id="' + element.getAttribute("id") + '"]';
 console.log(selector);
 }
 if (element_has_name) {
+selector='name=' + element.getAttribute("name");
+console.log(selector);
     //console.log("name=" + element.getAttribute("name"));
     selector='//' + elementType + '[@name="' + element.getAttribute("name") + '"]';
+console.log(selector);
     locatorsList.name={type:"name",locator : selector,occurance:1,suggestion:"true green"}
+
 }
 if (element_has_href) {
     //console.log("href=" + element.getAttribute("href"));
@@ -53,4 +57,4 @@ if (element_has_src) {
 if (element_has_style) {
     console.log('//' + elementType + '[@style="' + element.getAttribute("style") + '"]');
 }
-console.log(locatorsList);
+console.log(locatorsList.length);
