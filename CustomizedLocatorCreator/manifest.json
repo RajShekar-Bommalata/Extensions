@@ -1,0 +1,24 @@
+{
+	"name": "CL Builder",
+	"description": "Builds all possible customized locators",	
+    "version": "1.0",
+    "devtools_page": "devtools/clb_devtools.html",
+	"browser_action": {
+		"default_title": "Tabs Info"
+	},
+	"background": {
+		"scripts": ["clb_background.js"]
+	},
+	"content_scripts": [{
+			"matches": ["<all_urls>"],
+			"js": ["clb_content.js"],
+			"run_at": "document_start"
+		}
+	],
+	"manifest_version": 2,
+	"permissions": [
+		"tabs",
+		"activeTab",
+		"storage"
+	]
+}
