@@ -58,4 +58,3 @@ if (element_has_style) {
     console.log('//' + elementType + '[@style="' + element.getAttribute("style") + '"]');
 }
 console.log(locatorsList.length);
-
