@@ -4,7 +4,6 @@ chrome.runtime.sendMessage({
     console.log(response);
 })
 
-
 function setSelectedElement(el) {
     var element = el;
     var temp_element = element.cloneNode().outerHTML;
@@ -20,6 +19,7 @@ function setSelectedElement(el) {
     var element_has_alt = temp_element.includes("alt=");
     var element_has_src = temp_element.includes("src=");
     var element_has_style = temp_element.includes("style=");
+    var element_has_title = temp_element.includes("title=");
 
     if (element_has_class) {
         selector = 'class=' + element.getAttribute("class");
@@ -27,15 +27,14 @@ function setSelectedElement(el) {
         locatorsList.class = {
             type: "class", locator: selector, occurance: 1, suggestion: "true green"
         }
-        selector = '//' + elementType + '[@class="' + element.getAttribute("class") + '"]';
+        selector = '//' + elementType + "[@class='" + element.getAttribute("class") + "']";
         console.log(selector);
         locatorsList.xpath.push({
             type: "xpath",
             locator: selector,
-            occurance: 1,
+            occurance: 0,
             suggestion: "true green"
         })
-
     }
     if (element_has_id && element_has_id != "") {
         selector = 'id=' + element.getAttribute("id");
@@ -43,16 +42,16 @@ function setSelectedElement(el) {
         locatorsList.id = {
             type: "id",
             locator: selector,
-            occurance: 1,
+            occurance: 0,
             suggestion: "true yellow"
         }
-        selector = '//' + elementType + '[@id="' + element.getAttribute("id") + '"]';
-        locatorsList.xpath= {
+        selector = '//' + elementType + "[@id='" + element.getAttribute("id") + "']";
+        locatorsList.xpath.push( {
             type: "xpath",
             locator: selector,
-            occurance: 1,
+            occurance: 0,
             suggestion: "true yellow"
-        }
+        })
         console.log(selector);
     }
     if (element_has_name) {
@@ -65,30 +64,32 @@ function setSelectedElement(el) {
             suggestion: "true green"
         }
         //console.log("name=" + element.getAttribute("name"));
-        selector = '//' + elementType + '[@name="' + element.getAttribute('name') + '"]';
+        selector = '//' + elementType + "[@name='" + element.getAttribute('name') + "']";
         console.log(selector);
-        locatorsList.xpath = {
+        locatorsList.xpath.push({
             type: "xpath",
             locator: selector,
-            occurance: 1,
+            occurance: 0,
             suggestion: "true green"
-        }
-
+        })
+    }
+    if (element_has_title) {
+        selector='//' + elementType + "[@title='" + element.getAttribute("title") + "']";
     }
     if (element_has_href) {
-        selector='//' + elementType + '[@href="' + element.getAttribute("href") + '"]';
+        selector='//' + elementType + "[@href='" + element.getAttribute("href") + "']";
     }
     if (element_has_for) {
-        selector='//' + elementType + '[@for="' + element.getAttribute("for") + '"]';
+        selector='//' + elementType + "[@for='" + element.getAttribute("for") + "']";
     }
     if (element_has_alt) {
-        selector='//' + elementType + '[@alt="' + element.getAttribute("alt") + '"]';
+        selector='//' + elementType + "[@alt='" + element.getAttribute("alt") + "']";
     }
     if (element_has_src) {
-        selector='//' + elementType + '[@src="' + element.getAttribute("src") + '"]';
+        selector='//' + elementType + "[@src='" + element.getAttribute("src") + "']";
     }
     if (element_has_style) {
-        selector='//' + elementType + '[@style="' + element.getAttribute("style") + '"]';
+        selector='//' + elementType + "[@style='" + element.getAttribute("style") + "']";
     }
     console.log(locatorsList);
 }
