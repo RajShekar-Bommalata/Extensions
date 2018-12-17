@@ -1,5 +1,3 @@
-
-var html ="";
 var locators_count=0;
 var locator_table = document.getElementById("locatorTable");
 
@@ -28,7 +26,7 @@ chrome.runtime.onMessage.addListener(
 
     })
 function build_Locators_table(data) {
-    
+    var html ="";
     document.getElementById("locatorTable").innerHTML = "";
     for(locators_count=0;locators_count<data.length;locators_count++){
         html+='<tr>'
@@ -42,7 +40,7 @@ function build_Locators_table(data) {
             html+='<td><img src="wrong.png" class="icons"><img src="clipboard.png" class="icons"></td>'
         }
         //html+='<td><img src="clipboard.png" class="icons"></td>'
-        html+='</tr>'
-    document.getElementById("locatorTable").innerHTML = html;
+        html+='</tr>';
     } 
+    document.getElementById("locatorTable").innerHTML = html;
 }
